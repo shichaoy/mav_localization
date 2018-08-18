@@ -1,0 +1,91 @@
+#
+# 6D localization configuration for Micro Aerial Vehicle using depth camera
+#
+
+motion_test: false
+
+ # raycasting (slow) or endpoint model (approx)
+use_raycasting: false
+
+
+##pose tracking
+num_particles: 300
+init_global: false
+init_from_truepose: false
+
+# global loc:
+#num_particles: 20000
+#init_global: true
+#init_from_truepose: false
+
+# rel. number of effectice particles for resampling threshold (0: never, 1: always)
+neff_factor: 1.0 
+
+# minimum weight for a particle (normal scale, need to sum up to < 1!)
+# Warning: this keeps the particles from converging properly!
+#min_particle_weight: 0.000001
+
+sensor_sampling_dist: 0.25
+
+# min traversed odometry interval between depth measurements: 
+update_min_trans: 0.2
+update_min_rot: 0.3
+
+
+# depth cloud obs.model (for endpoint model only)
+# std.dev for gaussian (p_hit)
+#use in loc
+endpoint/sigma: 0.05
+endpoint/max_obstacle_distance: 0.2
+
+use_imu: false                  #True = use IMU for initialization and observation models, false = use orientation from odometry
+constrain_motion_z: false       #True = do not estimate height, directly use odometry pose
+constrain_motion_rp: false      #True = do not estimate roll and pitch, directly use odometry pose
+
+
+# noise of the motion model
+# std.devs for z,r,p depend on amount of translation (per meter):
+motion_noise/z: 0.1   # per m
+motion_noise/roll: 0.1    # per m
+motion_noise/pitch: 0.1    # per m
+
+#noise affecting x direction (sq. / variance)
+motion_noise/xx:    0.3
+motion_noise/xy:   0.05 
+motion_noise/xt: 0.03
+#noise affecting y direction (sq. / variance)
+motion_noise/yx:    0.05
+motion_noise/yy:   0.3
+motion_noise/yt:  0.03
+#noise affecting orientation (sq. / variance)
+motion_noise/tx:     1.5
+motion_noise/ty:     1.5
+motion_noise/tt:    0.3
+
+# odometry calibration for 2D drift (x,y,theta)
+# this is the identy matrix - uses odometry uncalibrated
+motion_calib/xx:  1.2
+motion_calib/xy:  0.0
+motion_calib/xt:  0.0
+motion_calib/yx:  0.0
+motion_calib/yy:  1.0
+motion_calib/yt:  0.0
+motion_calib/tx:  0.0
+motion_calib/ty:  0.0
+motion_calib/tt:  1.0
+
+# initial pose (when no truepose available):
+initial_pose/x: 0.0
+initial_pose/y: 0.0 
+initial_pose/z: 0.0     # over z-plane 
+initial_pose/roll: 0.0
+initial_pose/pitch: 0.0
+initial_pose/yaw: 0.0    
+
+# std dev for initial noise (truepose or manual init)
+initial_std/x: 0.05
+initial_std/y: 0.05
+initial_std/z: 0.05
+initial_std/roll: 0.05
+initial_std/pitch: 0.05
+initial_std/yaw: 0.01
