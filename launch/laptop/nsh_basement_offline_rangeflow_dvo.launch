@@ -24,8 +24,8 @@
 	  <remap from="output" to="/point_cloud"/>
 	</node>
 	
-	<node pkg="ca_rangeflow" type="ca_rangeflow" name="ca_rangeflow" output="screen">
-	  <rosparam file="$(find ca_rangeflow)/config/param320.yaml" command="load"/>
+	<node pkg="rangeflow_odom" type="rangeflow_odom" name="rangeflow_odom" output="screen">
+	  <rosparam file="$(find rangeflow_odom)/config/param320.yaml" command="load"/>
 	  <param name="dvo_refine" type="bool" value="false" />
 	  
 	  <remap from="/camera/rgb/image_rect" to="/camera/rgb/image_raw" />

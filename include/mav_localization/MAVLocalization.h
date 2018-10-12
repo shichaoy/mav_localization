@@ -56,7 +56,7 @@
 
 #include <nav_msgs/Odometry.h>
 
-#include "ca_rangeflow/vo_state.h"
+#include "rangeflow_odom/vo_state.h"
 
 //#include <planesegmentation/PlaneSegmenter.h>
 
@@ -88,7 +88,7 @@ namespace MAV_localization
       MAVLocalization ( unsigned randomSeed );
       virtual ~MAVLocalization();
 
-      virtual void pointCloudCallback ( const sensor_msgs::PointCloud2::ConstPtr& msg, const ca_rangeflow::vo_state::ConstPtr& odom);
+      virtual void pointCloudCallback ( const sensor_msgs::PointCloud2::ConstPtr& msg, const rangeflow_odom::vo_state::ConstPtr& odom);
       void initPoseCallback ( const geometry_msgs::PoseWithCovarianceStampedConstPtr& msg );
 
       bool globalLocalizationCallback ( std_srvs::Empty::Request& req, std_srvs::Empty::Response& res );
@@ -205,13 +205,13 @@ namespace MAV_localization
 
             
       message_filters::Subscriber<sensor_msgs::PointCloud2> cloudSub;
-      message_filters::Subscriber<ca_rangeflow::vo_state> odomSub;
-      typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::PointCloud2,ca_rangeflow::vo_state> MySyncPolicy;
+      message_filters::Subscriber<rangeflow_odom::vo_state> odomSub;
+      typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::PointCloud2,rangeflow_odom::vo_state> MySyncPolicy;
       message_filters::Synchronizer<MySyncPolicy>* sync1;
       
 
       message_filters::Subscriber<sensor_msgs::PointCloud2>* m_pointCloudSub;
-      message_filters::Subscriber<ca_rangeflow::vo_state>* m_voSub;
+      message_filters::Subscriber<rangeflow_odom::vo_state>* m_voSub;
       
       tf::MessageFilter<sensor_msgs::PointCloud2>* m_pointCloudFilter;
 

@@ -153,7 +153,7 @@ namespace MAV_localization
 
 //       // subscription on point cloud, tf message filter
 //       m_pointCloudSub = new message_filters::Subscriber<sensor_msgs::PointCloud2> ( m_nh, "point_cloud", 100 );
-//       m_voSub = new message_filters::Subscriber<ca_rangeflow::vo_state> ( m_nh, "rangflow_state", 100 );
+//       m_voSub = new message_filters::Subscriber<rangeflow_odom::vo_state> ( m_nh, "rangflow_state", 100 );
 //       m_pointCloudFilter = new tf::MessageFilter<sensor_msgs::PointCloud2> ( *m_pointCloudSub, m_tfListener, m_odomFrameId,
 //             100 );
 //       m_pointCloudFilter->registerCallback ( boost::bind ( &MAVLocalization::pointCloudCallback, this, _1, _2 ) );
@@ -742,7 +742,7 @@ namespace MAV_localization
       uniformSampling.compute ( sampledIndices );
    }
 
-   void MAVLocalization::pointCloudCallback ( const sensor_msgs::PointCloud2::ConstPtr& msg, const ca_rangeflow::vo_state::ConstPtr& odom )
+   void MAVLocalization::pointCloudCallback ( const sensor_msgs::PointCloud2::ConstPtr& msg, const rangeflow_odom::vo_state::ConstPtr& odom )
    {
       ROS_DEBUG ( "PointCloud received (time: %f)", msg->header.stamp.toSec() );
       ros::WallTime startTime = ros::WallTime::now();

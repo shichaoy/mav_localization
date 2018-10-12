@@ -4,6 +4,8 @@ We use octomap and 3D Euclidean Distance Map for map . This method uses external
  (such as fovis, demo) to predict the pose of the particle set, then update each particle's weight using 
 Likelihood observation model.
 
+This package depends on the message defined in [range-flow odometry](https://github.com/shichaoy/rangeflow_odom) package. The odometry provides initial guess then the localization corrects the drift.
+
 <br>
 
 **Related Paper:**
